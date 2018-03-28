@@ -119,13 +119,14 @@ function onLoad() {
 	let vertexShaderSource = getVertexShaderSource();
 	let fragmentShaderSource = getFragmentShaderSource();
 
-	let indices = [0, 1, 2];
+	let indices = [0, 1, 2,3];
 	indexCount = indices.length;
 
 	let positions = [
 		-0.5, 0.5, 0,
 		-0.5, -0.5, 0,
-		0.5, -0.5, 0
+		0.5, -0.5, 0,
+		0.1,0.5,0
 	];
 
 	shaderProgram = createShaderProgram(vertexShaderSource, fragmentShaderSource);

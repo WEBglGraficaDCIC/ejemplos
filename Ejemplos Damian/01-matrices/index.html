@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Matrices with glMatrix</title>
+	<script src="../99-common/glmatrix/gl-matrix-min.js"></script>
+	<script src="../99-common/VertexAttributeInfo.js"></script>
+	<script src="../99-common/VAOHelper.js"></script>
+	<script src="../99-common/ShaderProgramHelper.js"></script>
+	<script src="files/shaders/vertex.glsl"></script>
+	<script src="files/shaders/fragment.glsl"></script>
+	<script src="js/app.js"></script>
+</head>
+<body onload='onLoad();'>
+	<h1>Matrices with glMatrix</h1>
+	<canvas id='webglCanvas' width = "500" height = "500" style='float:left;'>
+	</canvas>
+
+	<table border='2'>
+		<tr>
+			<th>Param</th>
+			<th>Value</th>
+		</tr>
+		<tr>
+			<td>Model RotationY</td>
+			<td><input type="range" min="0" max="360" value="0" oninput="onSliderRotation(this);"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><button onclick="onRender();">Manual Render!</button></td>
+		</tr>
+	</table>
+
+</body>
+</html>
