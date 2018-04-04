@@ -1,5 +1,13 @@
+/**
+ * Helper class to parse OBJ files.
+ * Based on: https://dannywoodz.wordpress.com/2014/12/16/webgl-from-scratch-loading-a-mesh/
+ */
 class OBJParser {
-	//Based mainly on https://dannywoodz.wordpress.com/2014/12/16/webgl-from-scratch-loading-a-mesh/
+	/**
+	 * Parse an OBJ file
+	 * @param  {string} fileContent Full content of OBJ file
+	 * @return {object}             Plain object containing arrays of indices, positions, normals, textures.
+	 */
 	static parseFile(fileContent) {
 		let lines = fileContent.split('\n');
 		let srcPositions = []; //[[x,y,z], [x,y,z], ...]

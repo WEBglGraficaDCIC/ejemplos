@@ -34,4 +34,22 @@ class Utils {
 		}
 		return result;
 	}
+
+	static hexToRgbInt(hex) {
+		let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+		return {
+			r: parseInt(result[1], 16),
+			g: parseInt(result[2], 16),
+			b: parseInt(result[3], 16)
+		};
+	}
+
+	static hexToRgbFloat(hex) {
+		let rgbInt = Utils.hexToRgbInt(hex);
+		return {
+			r: parseFloat(rgbInt.r) / 255.0,
+			g: parseFloat(rgbInt.g) / 255.0,
+			b: parseFloat(rgbInt.b) / 255.0,
+		};
+	}
 }

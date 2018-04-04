@@ -1,7 +1,22 @@
 class VAOHelper {
 
 	static getVaoExtension() {
-		return gl.getExtension('OES_vertex_array_object');
+		let uintEBOExtension = gl.getExtension('OES_element_index_uint');
+		if (!uintEBOExtension) {
+			let errorMsg = "Buh! (webgl1) Unsupported gl.UNSIGNED_INT on EBOs." +
+			"You have to change 'Uint32Array' to 'Uint16Array' when filling EBO buffers, " +
+			"and 'gl.UNSIGNED_INT' to 'gl.UNSIGNED_SHORT' in gl.drawElements(...). " +
+			"OR You can move to webgl2.";
+			throw errorMsg;
+		}
+		let vaoExtension = gl.getExtension('OES_vertex_array_object');
+		if (!vaoExtension) {
+			let errorMsg = "Buh! (webgl1) Unsupported use of VAOs. " +
+			"You may use VBOs and EBOs but it requires a lot of changes. " +
+			"OR You can move to webgl2";
+			throw errorMsg;
+		}
+		return vaoExtension;
 	}
 
 	static create(indices, vertexAttributeInfoArray) {
@@ -48,7 +63,7 @@ class VAOHelper {
 	static _createEBO(indices) {
 		let ebo = gl.createBuffer();
 		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ebo);
-		gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+		gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint32Array(indices), gl.STATIC_DRAW);
 		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
 		return ebo;
 	}

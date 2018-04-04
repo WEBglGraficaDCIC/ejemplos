@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Spherical Camera</title>
+	<script src="../99-common/glmatrix/gl-matrix-min.js"></script>
+	<script src="../99-common/VertexAttributeInfo.js"></script>
+	<script src="../99-common/VAOHelper.js"></script>
+	<script src="../99-common/ShaderProgramHelper.js"></script>
+	<script src="../99-common/Utils.js"></script>
+	<script src="../99-common/OBJParser.js"></script>
+	<script src="../99-common/primitives/Axis.js"></script>
+	<script src="../99-common/cameras/Camera.js"></script>
+	<script src="../99-common/cameras/SphericalCamera.js"></script>
+	<script src="files/shaders/vertex.glsl"></script>
+	<script src="files/shaders/fragment.glsl"></script>
+	<script src="js/app.js"></script>
+	<script src="js/listeners.js"></script>
+	<script src="js/object.js"></script>
+
+	<script src="files/models/cubo.obj"></script>
+	<script src="files/models/esfera.obj"></script>
+	<script src="files/models/cilindro.obj"></script>
+	<script src="files/models/cono.obj"></script>
+	<script src="files/models/toroide.obj"></script>
+	<script src="files/models/mono.obj"></script>
+	<script src="files/models/ironman.obj"></script>
+</head>
+<body onkeypress="onKeyDown(event);">
+	<h3>Scene: objects and transformations</h3>
+	<button onclick="onLoad();">1. Load Method!</button>
+	<button onclick="onRender();">1. Render Method!</button>
+	<br>
+	<br>
+	<h4>Properties</h4>
+	<table border="2" style='float:left;'>
+		<tr><th>Param</th><th>Control</th><th>Value</th></tr>
+		<tr>
+			<td>Camera FovY</td>
+			<td>10º&le;<input type="range" min="10" max="90" step="1" value="55" oninput="onSliderFovy(this, 'lblFovy');">&le;90</td>
+			<td id="lblFovy">55</td>
+		</tr>
+		<tr>
+			<td>Camera Radius</td>
+			<td>Press + or - numpad keys</td>
+			<td id="lblRadius">2</td>
+		</tr>
+		<tr>
+			<td>Camera Theta</td>
+			<td>Press A or D keys</td>
+			<td id='lblTheta'>45</td>
+		</tr>
+		<tr>
+			<td>Camera Phi</td>
+			<td>Press W or S keys</td>
+			<td id='lblPhi'>45</td>
+		</tr>
+		<tr>
+			<td>Camera Target</td>
+			<td>(0, 0, 0)</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Model Color</td>
+			<td><input type='color' value="#FFFFFF" oninput="onColorModel(this)"></td>
+			<td id='lblColor'></td>
+		</tr>
+		<tr>
+			<td>Model Mode</td>
+			<td>
+				<input type="checkbox" name="a" onchange="onCheckboxSolid(this)">
+				Solid mode
+			</td>
+			<td></td>
+		</tr>
+	</table>
+
+	<canvas id='webglCanvas' width = "800" height = "600" style="border: 1px solid gray"></canvas>
+
+</body>
+</html>
