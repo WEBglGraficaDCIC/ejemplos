@@ -14,7 +14,7 @@ var u_modelColor;
 //Uniform values.
 var modelColor = Utils.hexToRgbFloat("#FFFFFF");
 
-//Objects (OBJ)
+//Models (OBJ)
 var cubo;
 var esfera;
 var cilindro;
@@ -32,23 +32,23 @@ var camera;
 // Flags
 var isSolid = false;
 
-function loadObjects(pos_location) {
-	// Load each object (OBJ) and generate its mesh
-	mono = new Object(monoSource, pos_location);
-	mono.generateModel();
+function loadModels(pos_location) {
+	// Load each model (OBJ) and generate the mesh
+	mono = new Model(monoSource);
+	mono.generateModel(pos_location);
 
-	esfera = new Object(esferaSource, pos_location);
-	esfera.generateModel();
+	esfera = new Model(esferaSource);
+	esfera.generateModel(pos_location);
 
-	ironman = new Object(ironmanSource, pos_location);
-	ironman.generateModel();
+	ironman = new Model(ironmanSource);
+	ironman.generateModel(pos_location);
 
-	cono = new Object(conoSource, pos_location);
-	cono.generateModel();
+	cono = new Model(conoSource);
+	cono.generateModel(pos_location);
 
 }
 
-function setObjectsTransformations() {
+function setModelsTransformations() {
 	let matrix = mat4.create();
 	let translation = mat4.create();
 	let scaling = mat4.create();
@@ -105,18 +105,18 @@ function onLoad() {
 	u_projMatrix = gl.getUniformLocation(shaderProgram, 'projMatrix');
 	u_modelColor = gl.getUniformLocation(shaderProgram, 'modelColor');
 
-	// Load all the objects
-	loadObjects(posLocation);
+	// Load all the models
+	loadModels(posLocation);
 	
-	// Set the objects' transformations
-	setObjectsTransformations();
+	// Set the models' transformations
+	setModelsTransformations();
 
 	// Set some WebGL properties
 	gl.enable(gl.DEPTH_TEST);
 	gl.clearColor(0.18, 0.18, 0.18, 1.0);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-	// Create auxiliary objects
+	// Create auxiliary models
 	axis = new Axis();
 	axis.load();
 	
@@ -132,7 +132,7 @@ function onRender() {
 	// Set some WebGL properties
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	
-	// Draw auxiliary objects
+	// Draw auxiliary models
 	axis.render(projMatrix, viewMatrix);
 
 	// Set shader and uniforms
@@ -143,7 +143,7 @@ function onRender() {
 	let _modelColor = vec3.fromValues(modelColor.r, modelColor.g, modelColor.b);
 	gl.uniform3fv(u_modelColor, _modelColor);
 
-	// Draw objects
+	// Draw models
 	mono.draw(isSolid, gl, _gl);
 	esfera.draw(isSolid, gl, _gl);
 	ironman.draw(isSolid, gl, _gl);

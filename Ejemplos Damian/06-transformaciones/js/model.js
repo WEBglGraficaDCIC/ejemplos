@@ -1,4 +1,4 @@
-class Object {
+class Model {
 	constructor(objectSource) {
 		this.source = objectSource;
 		this.vaoSolid = null; //Geometry to render (stored in VAO).
