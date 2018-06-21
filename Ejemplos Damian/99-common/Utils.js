@@ -52,4 +52,9 @@ class Utils {
 			b: parseFloat(rgbInt.b) / 255.0,
 		};
 	}
+
+	static hexToRgbFloatArray(hex) {
+		let rgbFloat = Utils.hexToRgbFloat(hex);
+		return [rgbFloat.r, rgbFloat.g, rgbFloat.b];
+	}
 }
